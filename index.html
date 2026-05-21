@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SKP Sementara | Kemendikdasmen</title>
+  <meta name="description" content="Halaman sementara pengalihan layanan SKP Kemendikdasmen dalam rangka simulasi BCP/DRC.">
+  <style>
+    :root {
+      --blue: #0b5cab;
+      --blue-dark: #073d73;
+      --cyan: #00a7c8;
+      --red: #d92d20;
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --line: #d9e2ec;
+      --soft: #f4f8fb;
+      --white: #ffffff;
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(11, 92, 171, 0.08), rgba(0, 167, 200, 0.06)),
+        var(--soft);
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner,
+    .main,
+    .footer-inner {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: min(260px, 42vw);
+      height: 58px;
+      object-fit: contain;
+      padding: 7px 10px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      flex: 0 0 auto;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    .brand-subtitle {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 8px 12px;
+      border: 1px solid rgba(217, 45, 32, 0.28);
+      border-radius: 999px;
+      color: #8a1f16;
+      background: #fff2f0;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--red);
+    }
+
+    .main {
+      display: grid;
+      align-items: center;
+      padding: 64px 0;
+    }
+
+    .notice {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .notice-primary,
+    .notice-side {
+      min-width: 0;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 18px 45px rgba(7, 61, 115, 0.08);
+    }
+
+    .notice-primary {
+      padding: clamp(28px, 5vw, 52px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .notice-primary::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 6px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .lead {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: #2d3948;
+      font-size: clamp(17px, 2.3vw, 21px);
+      line-height: 1.65;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .button-secondary {
+      color: var(--blue-dark);
+      border-color: var(--line);
+      background: var(--white);
+    }
+
+    .notice-side {
+      padding: 28px;
+      display: grid;
+      align-content: center;
+      gap: 22px;
+    }
+
+    .side-logo {
+      width: min(100%, 360px);
+      margin: 0 auto;
+      padding: 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .side-logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .info-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .info-item {
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .info-label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .info-value {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .footer-inner {
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 840px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .notice {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .topbar-inner,
+      .main,
+      .footer-inner {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .brand-logo {
+        width: min(220px, 72vw);
+        height: 50px;
+      }
+
+      .brand {
+        width: 100%;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .brand-title,
+      .brand-subtitle {
+        overflow-wrap: anywhere;
+      }
+
+      .main {
+        padding: 36px 0;
+      }
+
+      .notice-primary,
+      .notice-side {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .button {
+        width: 100%;
+        padding-right: 12px;
+        padding-left: 12px;
+        white-space: normal;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar" aria-label="Kop halaman">
+      <div class="topbar-inner">
+        <div class="brand">
+          <img class="brand-logo" src="assets/logo-kemendikdasmen.png" alt="Logo Kemendikdasmen">
+          <div>
+            <p class="brand-title">Kementerian Pendidikan Dasar dan Menengah</p>
+            <p class="brand-subtitle">Pengumuman resmi layanan migrasi</p>
+          </div>
+        </div>
+        <div class="status-pill" aria-label="Status layanan">
+          <span class="status-dot" aria-hidden="true"></span>
+          Pengalihan Sementara
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="notice" aria-labelledby="judul-pengumuman">
+        <div class="notice-primary">
+          <p class="eyebrow">Informasi BCP/DRC</p>
+          <h1 id="judul-pengumuman">Halaman SKP Sementara</h1>
+          <p class="lead">
+            Saat ini telah terjadi bencana yang berdampak pada layanan aplikasi SKP.
+            Untuk sementara, akses aplikasi SKP dialihkan ke alamat cadangan berikut.
+            Mohon menggunakan tautan resmi ini selama proses pemulihan berlangsung.
+          </p>
+          <div class="actions">
+            <a class="button button-primary" href="https://xxxxx">Buka Aplikasi SKP Sementara</a>
+            <a class="button button-secondary" href="https://www.kemendikdasmen.go.id">Website Kemendikdasmen</a>
+          </div>
+        </div>
+
+        <aside class="notice-side" aria-label="Detail pengumuman">
+          <div class="side-logo">
+            <img src="assets/logo-kemendikdasmen.png" alt="Logo Kemendikdasmen">
+          </div>
+          <ul class="info-list">
+            <li class="info-item">
+              <span class="info-label">Layanan</span>
+              <span class="info-value">Aplikasi SKP Kemendikdasmen</span>
+            </li>
+            <li class="info-item">
+              <span class="info-label">Alamat Sementara</span>
+              <span class="info-value">https://xxxxx</span>
+            </li>
+            <li class="info-item">
+              <span class="info-label">Pengumuman</span>
+              <span class="info-value">KEEEBAAAKAARAAANNNNNNNN</span>
+            </li>
+            <li class="info-item">
+              <span class="info-label">Dukungan Teknis</span>
+              <span class="info-value">EduCSIRT</span>
+            </li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        Halaman ini disiapkan untuk kebutuhan simulasi Business Continuity Plan dan Disaster Recovery Center.
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
